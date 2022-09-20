@@ -2,23 +2,29 @@
 
 Plataforma para adoções de animais
 
-## Install the dependencies
+## Requisitos
+```bash
+node: 14.19 ou superior
+quasar: npm i -g @quasar/cli
+
+```
+
+## Instalar dependências
 ```bash
 yarn
 # or
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Iniciar servidor 
 ```bash
-quasar dev
+npx quasar dev
 ```
 
 
-### Build the app for production
+### Build para produção
 ```bash
-quasar build
+npx quasar build
 ```
-
 ### Customize the configuration
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
