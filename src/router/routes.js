@@ -22,12 +22,12 @@ const routes = [
     component: () => import('pages/SignUpPage.vue'),
     name: 'signup'
   },
+  {
+    path: '/inicio-rapido',
+    component: () => import('pages/FastInitPage.vue'),
+    name: 'fast-init'
+  },
 
-  // {
-  //   path: '/',
-  //   component: () => import('pages/SignUpPage.vue'),
-  //   name: 'signup'
-  // },
   // Always leave this as last one,
   // but you can also remove it
   {
