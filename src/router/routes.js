@@ -7,7 +7,12 @@ const routes = [
       {
         path: '',
         component: () => import('pages/IndexPage.vue')
-      }
+      },
+      {
+        path: '/cadastrar-animal',
+        component: () => import('src/pages/AnimalSignUp.vue'),
+        name: 'animal-signup'
+      },
     ]
   },
 

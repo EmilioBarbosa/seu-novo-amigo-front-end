@@ -2,23 +2,15 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar class="toolbar">
-        <div class="row flex justify-between">
-          <div class="col-4">
-            <q-btn flat dense round icon="menu" aria-label="Menu"  @click="toggleLeftDrawer"/>
-          </div>
-          <div class="col-4">
-            <q-toolbar-title>
-              Quasar App
-            </q-toolbar-title>
-          </div>
-          <div class="col-4">
-            icone
-          </div>
 
-        </div>
+          <q-btn flat dense round icon="menu" aria-label="Menu"  @click="toggleLeftDrawer"/>
+
+          <q-toolbar-title class="text-center">Seu Novo Amigo</q-toolbar-title>
+
+          <q-btn flat round dense icon="fa-solid fa-dog" />
+
       </q-toolbar>
     </q-header>
-
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="drawer">
       <div class="row text-center">
         <div class="col-12 block q-mt-md">
@@ -26,8 +18,16 @@
           <h6 class="text-bold q-pa-none q-ma-none">SEU NOVO AMIGO</h6>
         </div>
       </div>
+      <q-separator color="white"/>
+      <div class="q-pa-lg">
+        <h6 class="q-pa-none q-ma-none text-bold">Inicio</h6>
+        <h6 class="q-pa-none q-ma-none text-bold">Adotar</h6>
+        <h6 class="q-pa-none q-ma-none text-bold">Cadastrar adoção</h6>
+        <h6 class="q-pa-none q-ma-none text-bold">Sobre</h6>
+        <h6  class="q-pa-none q-ma-none q-mt-lg text-bold">Cadastrar-se</h6>
+        <h6 class="q-pa-none q-ma-none text-bold">Login</h6>
+      </div>
     </q-drawer>
-
     <q-page-container>
       <router-view />
     </q-page-container>
