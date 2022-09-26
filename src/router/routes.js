@@ -28,7 +28,12 @@ const routes = [
       {
         path: '/inicio-rapido',
         component: () => import('pages/FastInitPage.vue'),
-        name: 'fast-init'
+        name: 'fastInit'
+      },
+      {
+        path: '/sobre',
+        component: () => import('pages/aboutPage.vue'),
+        name: 'about'
       },
     ]
   },
