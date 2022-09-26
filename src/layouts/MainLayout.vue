@@ -11,22 +11,78 @@
 
       </q-toolbar>
     </q-header>
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="drawer">
+    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="drawer text-black">
       <div class="row text-center">
         <div class="col-12 block q-mt-md">
-          <img src="src/assets/logo_seu_novo_amigo.png" style="width: 130px" alt="Logo da plataforma">
-          <h6 class="text-bold q-pa-none q-ma-none">SEU NOVO AMIGO</h6>
+          <img src="src/assets/logo_seu_novo_amigo_drawer.png" style="width: 180px" alt="Logo da plataforma">
         </div>
       </div>
-      <q-separator color="white"/>
-      <div class="q-pa-lg">
-        <h6 class="q-pa-none q-ma-none text-bold">Inicio</h6>
-        <h6 class="q-pa-none q-ma-none text-bold">Adotar</h6>
-        <h6 class="q-pa-none q-ma-none text-bold">Cadastrar adoção</h6>
-        <h6 class="q-pa-none q-ma-none text-bold">Sobre</h6>
-        <h6  class="q-pa-none q-ma-none q-mt-lg text-bold">Cadastrar-se</h6>
-        <h6 class="q-pa-none q-ma-none text-bold">Login</h6>
-      </div>
+        <q-list padding class="menu-list">
+          <router-link :to="{name: 'home'}">
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="home" />
+              </q-item-section>
+              <q-item-section>
+                Inicio
+              </q-item-section>
+            </q-item>
+          </router-link>
+
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="favorite" />
+            </q-item-section>
+            <q-item-section>
+              Adotar
+            </q-item-section>
+          </q-item>
+
+          <router-link :to="{name: 'animalSignUp'}">
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="assignment" />
+              </q-item-section>
+              <q-item-section>
+                Cadastrar adoção
+              </q-item-section>
+            </q-item>
+          </router-link>
+
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-icon name="info" />
+            </q-item-section>
+            <q-item-section>
+              Sobre
+            </q-item-section>
+          </q-item>
+
+          <q-separator/>
+          <router-link :to="{name: 'login'}">
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="login" />
+              </q-item-section>
+
+              <q-item-section>
+                Login
+              </q-item-section>
+            </q-item>
+          </router-link>
+
+          <router-link :to="{name: 'signUp'}">
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="person_add" />
+              </q-item-section>
+
+              <q-item-section>
+                Cadastrar-se
+              </q-item-section>
+            </q-item>
+          </router-link>
+        </q-list>
     </q-drawer>
     <q-page-container>
       <router-view />
@@ -56,10 +112,13 @@ export default defineComponent({
 
 <style>
 .drawer{
-  background-color: #7994E1;
+  background-color: white;
 }
 .toolbar{
   background-color: #7994E1;
-
+}
+a{
+  text-decoration: none;
+  color: black;
 }
 </style>
