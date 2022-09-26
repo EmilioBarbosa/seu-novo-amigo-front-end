@@ -1,8 +1,8 @@
 <template>
   <div>
     <!--Dados do Animal-->
-    <div class="row flex flex-center">
-      <h5 class="text-bold">Dados do Animal <q-icon size="md" class="icon" name="edit_note"></q-icon></h5>
+    <div class="row flex flex-center" >
+      <h5 class="text-bold q-ma-none" style="margin: 20px;">Dados do Animal <q-icon size="md" class="icon" name="edit_note"></q-icon></h5>
     </div>
     <div class="row">
       <div class="col-12 col-md-4 flex flex-center">
@@ -26,7 +26,7 @@
     </div>
     <!--Endereço-->
     <div class="row flex flex-center">
-      <h5 class="text-bold">Endereço <q-icon size="md" class="icon" name="location_on"></q-icon></h5>
+      <h5 class="text-bold q-ma-none" style="margin: 20px;">Endereço <q-icon size="md" class="icon" name="location_on"></q-icon></h5>
     </div>
     <div class="row">
       <div class="col-12 col-md-4 flex flex-center">
@@ -48,10 +48,14 @@
     <!--Fotos-->
     <div class="row flex flex-center">
       <div class="col-12 col-md-6 text-center">
-        <h5 class="text-bold q-mb-none">Fotos <q-icon size="md" class="icon" name="image"></q-icon></h5>
+        <h5 class="text-bold q-ma-none" style="margin: 20px;">Fotos <q-icon size="md" class="icon" name="image"></q-icon></h5>
         <p class="q-mt-none q-mb-lg">Envie até 2 fotos do animal</p>
         <q-icon name="arrow_upward" size="xl"></q-icon>
       </div>
+    </div>
+    <!--Cadastrar-->
+    <div class="row flex flex-center q-mt-lg">
+      <q-btn color="white" class="text-black q-mb-md" icon-right="pets" label="Cadastrar" />
     </div>
   </div>
 </template>

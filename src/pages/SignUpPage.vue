@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="height: 100vh">
+  <div class="row" style="height: 80vh">
     <div class="col-12 col-md-6 flex justify-center items-center" >
       <div class="text-center">
         <img src="src/assets/logo_seu_novo_amigo.png" style="width: 300px" alt="Logo da plataforma">
