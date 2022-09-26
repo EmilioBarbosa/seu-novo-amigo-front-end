@@ -49,14 +49,16 @@
             </q-item>
           </router-link>
 
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="info" />
-            </q-item-section>
-            <q-item-section>
-              Sobre
-            </q-item-section>
-          </q-item>
+          <router-link :to="{name: 'about'}">
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="info" />
+              </q-item-section>
+              <q-item-section>
+                Sobre
+              </q-item-section>
+            </q-item>
+          </router-link>
 
           <q-separator/>
           <router-link :to="{name: 'login'}">
