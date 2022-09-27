@@ -12,35 +12,35 @@
     </div>
     <div class="row">
       <div class="col-md-4 col-12">
-        <cardInformacaoAnimal />
+        <animalInformationCard />
       </div>
       <div class="col-md-4 col-12">
-        <cardInformacaoAnimal />
+        <animalInformationCard />
       </div>
       <div class="col-md-4 col-12">
-        <cardInformacaoAnimal />
+        <animalInformationCard />
       </div>
     </div>
     <div class="row flex flex-center">
       <div class="col-md-4 col-12">
-        <cardInformacaoAnimal />
+        <animalInformationCard />
       </div>
       <div class="col-md-4 col-12">
-        <cardInformacaoAnimal />
+        <animalInformationCard />
       </div>
       <div class="col-md-4 col-12">
-        <cardInformacaoAnimal />
+        <animalInformationCard />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import cardInformacaoAnimal from "components/cardInformacaoAnimal.vue";
+import animalInformationCard from "components/animalInformationCard.vue";
 export default {
   name: "AdoptPage",
   components: {
-    cardInformacaoAnimal
+    animalInformationCard
   }
 }
 </script>
