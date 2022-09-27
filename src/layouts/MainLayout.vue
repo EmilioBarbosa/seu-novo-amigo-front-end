@@ -11,7 +11,7 @@
 
       </q-toolbar>
     </q-header>
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="drawer text-black">
+    <q-drawer v-model="leftDrawerOpen" bordered  class="drawer text-black">
       <div class="row text-center">
         <div class="col-12 block q-mt-md">
           <img src="src/assets/logo_seu_novo_amigo_drawer.png" style="width: 180px" alt="Logo da plataforma">
@@ -29,14 +29,16 @@
             </q-item>
           </router-link>
 
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="favorite" />
-            </q-item-section>
-            <q-item-section>
-              Adotar
-            </q-item-section>
-          </q-item>
+          <router-link :to="{name: 'adopt'}">
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="favorite" />
+              </q-item-section>
+              <q-item-section>
+                Adotar
+              </q-item-section>
+            </q-item>
+          </router-link>
 
           <router-link :to="{name: 'animalSignUp'}">
             <q-item clickable v-ripple>

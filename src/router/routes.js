@@ -10,6 +10,11 @@ const routes = [
         component: () => import('pages/IndexPage.vue')
       },
       {
+        path: '/adotar',
+        component: () => import('pages/AdoptPage.vue'),
+        name: 'adopt'
+      },
+      {
         path: '/cadastrar-animal',
         component: () => import('src/pages/AnimalSignUp.vue'),
         name: 'animalSignUp'
