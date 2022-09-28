@@ -1,52 +1,43 @@
 <template>
-  <div class="q-pa-md">
-    <div class="row">
-      <div class="col-6 titulo flex">
-        <h5 class="text-bold">ANIMAIS PARA ADOÇÃO</h5>
-        <div style="align-self: center" class="q-ml-lg">
-          <span>Filtros</span>
-          <q-icon name="filter_list" style="align-self: center" size="lg"/>
-        </div>
+  <div class="wrapper">
+    <div class="title">
+      <h5 class="text-bold q-pa-none q-ma-none">ANIMAIS PARA ADOÇÃO</h5>
+    </div>
+    <div class="filters">
+      <q-select outlined label="Estado" bg-color="white"/>
+      <q-select outlined label="Cidade" bg-color="white"/>
+    </div>
+    <div class="cards">
+      <AnimalInformationCard />
+      <AnimalInformationCard />
+      <AnimalInformationCard />
 
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 col-12">
-        <animalInformationCard />
-      </div>
-      <div class="col-md-4 col-12">
-        <animalInformationCard />
-      </div>
-      <div class="col-md-4 col-12">
-        <animalInformationCard />
-      </div>
-    </div>
-    <div class="row flex flex-center">
-      <div class="col-md-4 col-12">
-        <animalInformationCard />
-      </div>
-      <div class="col-md-4 col-12">
-        <animalInformationCard />
-      </div>
-      <div class="col-md-4 col-12">
-        <animalInformationCard />
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import animalInformationCard from "components/animalInformationCard.vue";
+import AnimalInformationCard from "components/AnimalInformationCard.vue";
 export default {
   name: "AdoptPage",
   components: {
-    animalInformationCard
-  }
+    AnimalInformationCard
+}
 }
 </script>
 
 <style scoped>
-.titulo{
-  margin-left: 50px;
+.wrapper{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+}
+.title{
+  grid-column: 1 / 2;
+  grid-row: 1;
+}
+.cards{
+  grid-column: 1/4;
+  grid-row: 2;
 }
 </style>

@@ -37,7 +37,7 @@ export default {
 
 <style scoped>
 .my-card{
-  width: 400px;
+  width: 300px;
 }
 .btn{
   height: 30px;
