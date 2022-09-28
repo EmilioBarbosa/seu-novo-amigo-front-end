@@ -1,5 +1,4 @@
 <template>
-  <div class="flex flex-center q-mb-lg">
     <q-card class="my-card shadow-6">
       <q-carousel class="carousel" animated v-model="slide" arrows infinite>
         <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
@@ -19,7 +18,6 @@
           </div>
         </div>
     </q-card>
-  </div>
 </template>
 
 <script>
@@ -37,13 +35,14 @@ export default {
 
 <style scoped>
 .my-card{
-  width: 300px;
+  height: 332px;
+  width: 250px;
 }
 .btn{
   height: 30px;
   align-self: center;
 }
 .carousel{
-  max-height: 300px;
+  max-height: 100%;
 }
 </style>
