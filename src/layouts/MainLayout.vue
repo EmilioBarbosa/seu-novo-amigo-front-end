@@ -1,14 +1,14 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar class="toolbar">
+      <q-toolbar class="toolbar flex justify-between">
+        <div>
 
-          <q-btn flat dense round icon="menu" aria-label="Menu"  @click="toggleLeftDrawer"/>
+        <q-btn flat dense round icon="menu" aria-label="Menu"  @click="toggleLeftDrawer"/>
+        <span class="q-ml-sm text-bold">SEU NOVO AMIGO</span>
+        </div>
 
-          <q-toolbar-title class="text-center">Seu Novo Amigo</q-toolbar-title>
-
-          <q-btn flat round dense icon="fa-solid fa-dog" />
-
+        <q-btn flat round dense icon="fa-solid fa-dog" />
       </q-toolbar>
     </q-header>
     <q-drawer v-model="leftDrawerOpen" bordered  class="drawer text-black">
@@ -91,6 +91,11 @@
     <q-page-container >
       <router-view />
     </q-page-container>
+    <q-footer>
+      <q-toolbar class="toolbar flex flex-center">
+        <p>Desenvolvido por Emilio Barbosa</p>
+      </q-toolbar>
+    </q-footer>
   </q-layout>
 </template>
 
@@ -119,7 +124,7 @@ export default defineComponent({
   background-color: white;
 }
 .toolbar{
-  background-color: #7994E1;
+  background-color: #6A4A6D;
 }
 a{
   text-decoration: none;

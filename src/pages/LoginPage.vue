@@ -2,7 +2,7 @@
   <div>
     <q-form class="full-width fixed-center" style="max-width: 300px">
       <div class="row flex flex-center q-mb-md">
-        <img src="src/assets/logo_seu_novo_amigo.png" style="width: 250px" alt="Logo da plataforma">
+        <img src="src/assets/seu_novo_amigo_sem_fundo.png" style="width: 250px" alt="Logo da plataforma">
       </div>
       <q-input outlined label="Usuário" class="q-mb-md" bg-color="white"/>
       <q-input outlined type="password" class="q-mb-md" label="Senha" bg-color="white"/>
