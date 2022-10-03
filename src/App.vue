@@ -12,7 +12,7 @@ export default defineComponent({
 
 <style>
 body{
-  background-color: #7994E1;
+  background-color: #A188A6;
   color: white;
 }
 </style>

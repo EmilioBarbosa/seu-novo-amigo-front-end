@@ -10,6 +10,11 @@ const routes = [
         component: () => import('pages/IndexPage.vue')
       },
       {
+        path: '/adotar',
+        component: () => import('pages/AdoptPage.vue'),
+        name: 'adopt'
+      },
+      {
         path: '/cadastrar-animal',
         component: () => import('src/pages/AnimalSignUp.vue'),
         name: 'animalSignUp'
@@ -32,7 +37,7 @@ const routes = [
       },
       {
         path: '/sobre',
-        component: () => import('pages/aboutPage.vue'),
+        component: () => import('pages/AboutPage.vue'),
         name: 'about'
       },
     ]

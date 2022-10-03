@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row flex flex-center q-mt-lg">
-      <img src="src/assets/logo_seu_novo_amigo.png" style="width: 250px" alt="Logo da plataforma">
+      <img src="src/assets/seu_novo_amigo_sem_fundo.png" style="width: 250px" alt="Logo da plataforma">
     </div>
     <div class="row flex flex-center">
       <h5 class="text-bold q-mt-none">SEU NOVO AMIGO</h5>

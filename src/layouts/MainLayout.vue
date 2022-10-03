@@ -1,17 +1,17 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar class="toolbar">
+      <q-toolbar class="toolbar flex justify-between">
+        <div>
 
-          <q-btn flat dense round icon="menu" aria-label="Menu"  @click="toggleLeftDrawer"/>
+        <q-btn flat dense round icon="menu" aria-label="Menu"  @click="toggleLeftDrawer"/>
+        <span class="q-ml-sm text-bold">SEU NOVO AMIGO</span>
+        </div>
 
-          <q-toolbar-title class="text-center">Seu Novo Amigo</q-toolbar-title>
-
-          <q-btn flat round dense icon="fa-solid fa-dog" />
-
+        <q-btn flat round dense icon="fa-solid fa-dog" />
       </q-toolbar>
     </q-header>
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered class="drawer text-black">
+    <q-drawer v-model="leftDrawerOpen" bordered  class="drawer text-black">
       <div class="row text-center">
         <div class="col-12 block q-mt-md">
           <img src="src/assets/logo_seu_novo_amigo_drawer.png" style="width: 180px" alt="Logo da plataforma">
@@ -29,14 +29,16 @@
             </q-item>
           </router-link>
 
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="favorite" />
-            </q-item-section>
-            <q-item-section>
-              Adotar
-            </q-item-section>
-          </q-item>
+          <router-link :to="{name: 'adopt'}">
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="favorite" />
+              </q-item-section>
+              <q-item-section>
+                Adotar
+              </q-item-section>
+            </q-item>
+          </router-link>
 
           <router-link :to="{name: 'animalSignUp'}">
             <q-item clickable v-ripple>
@@ -89,6 +91,11 @@
     <q-page-container >
       <router-view />
     </q-page-container>
+    <q-footer class="footer">
+      <q-toolbar class="toolbar flex flex-center">
+        <p>Desenvolvido por Emilio Barbosa</p>
+      </q-toolbar>
+    </q-footer>
   </q-layout>
 </template>
 
@@ -117,7 +124,7 @@ export default defineComponent({
   background-color: white;
 }
 .toolbar{
-  background-color: #7994E1;
+  background-color: #6A4A6D;
 }
 a{
   text-decoration: none;
