@@ -91,7 +91,7 @@
     <q-page-container >
       <router-view />
     </q-page-container>
-    <q-footer>
+    <q-footer class="footer">
       <q-toolbar class="toolbar flex flex-center">
         <p>Desenvolvido por Emilio Barbosa</p>
       </q-toolbar>

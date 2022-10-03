@@ -1,29 +1,24 @@
 <template>
   <div>
-    <q-layout class="q-mt-lg" container style="height: 100vh">
-      <div class="row q-pl-md">
-        <div class="col-auto">
+      <div class="row q-mt-lg q-mb-lg">
+        <div class="col-12 text-center">
           <h5 class="text-bold q-pa-none q-ma-none">ANIMAIS PARA ADOÇÃO</h5>
         </div>
       </div>
-      <div class="row justify-between q-pa-md">
-        <div class="col-auto flex flex-sm-center">
+      <div class="row q-pa-md gutter flex flex-center">
+        <div class="col-sm-12 col-md-6 q-mb-lg col-lg-3 flex flex-center">
           <AnimalInformationCard />
         </div>
-        <div class="col-auto">
+        <div class="col-sm-12  col-md-6 q-mb-lg col-lg-3 flex flex-center">
           <AnimalInformationCard />
         </div>
-        <div class="col-auto">
+        <div class="col-sm-12 col-md-6 q-mb-lg col-lg-3 flex flex-center">
           <AnimalInformationCard />
         </div>
-        <div class="col-auto">
-          <AnimalInformationCard />
-        </div>
-        <div class="col-auto">
+        <div class="col-sm-12 col-md-6 q-mb-lg col-lg-3 flex flex-center">
           <AnimalInformationCard />
         </div>
       </div>
-    </q-layout>
   </div>
 </template>
 

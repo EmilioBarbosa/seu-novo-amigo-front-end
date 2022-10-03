@@ -7,11 +7,16 @@
       <q-input outlined label="Usuário" class="q-mb-md" bg-color="white"/>
       <q-input outlined type="password" class="q-mb-md" label="Senha" bg-color="white"/>
       <div class="row">
-        <a href="http://google.com" target="_blank" class="q-mb-md">Esqueceu sua senha ?</a>
+        <router-link :to="{name: 'signUp'}">
+          <p class="q-mb-md">Esqueceu sua senha ?</p>
+        </router-link>
       </div>
       <div class="row flex-center">
         <q-btn color="white" class="text-black q-mb-md" icon-right="pets" label="Entrar" />
-        <a href="http://google.com" target="_blank" >Não possui uma conta ? Cadastre-se</a>
+
+        <router-link :to="{name: 'signUp'}">
+          <p >Não possui uma conta ? Cadastre-se</p>
+        </router-link>
       </div>
 
     </q-form>

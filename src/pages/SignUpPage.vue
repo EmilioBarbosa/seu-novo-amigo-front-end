@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="height: 80vh">
+  <div class="row teste" style="height: 80vh;">
     <div class="col-12 col-md-6 flex justify-center items-center" >
       <div class="text-center">
         <img src="src/assets/seu_novo_amigo_sem_fundo.png" style="width: 300px" alt="Logo da plataforma">
@@ -26,5 +26,14 @@ export default {
 </script>
 
 <style scoped>
-
+@media (max-width: 600px) {
+  .teste{
+    margin-bottom: 400px;
+  }
+}
+@media (max-width: 768px) {
+  .teste{
+    margin-bottom: 400px;
+  }
+}
 </style>
