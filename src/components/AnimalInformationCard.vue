@@ -1,5 +1,5 @@
 <template>
-  <q-card class="card rounded-borders cursor-pointer" style="width: 230px;height: 336px;">
+  <q-card @click="openAnimalDialog" class="card rounded-borders cursor-pointer" style="width: 230px;height: 336px;">
     <img src="https://cdn.quasar.dev/img/mountains.jpg" style="height: 70%;">
 
     <q-card-section class="text-black">
@@ -13,6 +13,16 @@
 
 export default {
   name: "cardInformacaoAnimal",
+  setup(){
+    function openAnimalDialog(){
+      alert('teste')
+    }
+
+
+    return {
+      openAnimalDialog
+    }
+  }
 }
 </script>
 
