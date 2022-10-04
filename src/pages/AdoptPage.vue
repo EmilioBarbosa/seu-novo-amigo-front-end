@@ -9,15 +9,6 @@
         <div class="col-sm-12 col-md-6 q-mb-lg col-lg-3 flex flex-center">
           <AnimalInformationCard />
         </div>
-        <div class="col-sm-12  col-md-6 q-mb-lg col-lg-3 flex flex-center">
-          <AnimalInformationCard />
-        </div>
-        <div class="col-sm-12 col-md-6 q-mb-lg col-lg-3 flex flex-center">
-          <AnimalInformationCard />
-        </div>
-        <div class="col-sm-12 col-md-6 q-mb-lg col-lg-3 flex flex-center">
-          <AnimalInformationCard />
-        </div>
       </div>
   </div>
 </template>
