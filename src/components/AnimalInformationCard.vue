@@ -11,11 +11,15 @@
 
 <script>
 
+import { useRouter } from 'vue-router'
+
 export default {
   name: "cardInformacaoAnimal",
   setup(){
+    const router = useRouter()
+
     function openAnimalDialog(){
-      alert('teste')
+      router.push({name: 'AnimalDetails'})
     }
 
 
