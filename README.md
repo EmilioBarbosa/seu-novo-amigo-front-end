@@ -10,6 +10,8 @@
 
 Decidi fazer esse projeto para um trabalho final de uma disciplina da minha faculdade, com esse projeto procurei me desenvolver tecnicamente, e principalmente, ajudar os animais em situação de rua. 
 
+Este projeto é uma plataforma para adoções de animais.
+
 Este repositório contém o front-end da aplicação.
 
 ## Requisitos
