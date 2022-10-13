@@ -1,6 +1,16 @@
-# Seu Novo Amigo (seu-novo-amigo-front-end)
+<p align="center">
+    <img src="src/assets/Seu_novo_amigo_sem_fundo.png" style="width: 250px;"/>
+</p>
 
-Plataforma para adoções de animais
+<h3 align="center">
+    Seu Novo Amigo
+</h3>
+
+## Sobre o projeto
+
+Decidi fazer esse projeto para um trabalho final de uma disciplina da minha faculdade, com esse projeto procurei me desenvolver tecnicamente, e principalmente, ajudar os animais em situação de rua. 
+
+Este repositório contém o front-end da aplicação.
 
 ## Requisitos
 ```bash
@@ -26,5 +36,4 @@ npx quasar dev
 ```bash
 npx quasar build
 ```
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+
