@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="src/assets/Seu_novo_amigo_sem_fundo.png" style="width: 250px;"/>
+    <img src="logo_seu_novo_amigo_sem_fundo.png" style="width: 250px;"/>
 </p>
 
 <h3 align="center">
