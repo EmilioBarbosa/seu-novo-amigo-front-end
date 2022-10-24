@@ -52,8 +52,8 @@ function submit() {
     'password': password.value
   })
   .then((response) => {
-    console.log(response.data.token)
-    Cookies.set('token', response.data.token)
+    Cookies.set('sna_token', response.data.token)
+    Cookies.set('user_id', response.data.id)
   })
   .catch((response) => {
     error.value = true

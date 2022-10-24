@@ -1,3 +1,4 @@
+import Guard from '../services/middleware';
 
 const routes = [
   {
@@ -17,7 +18,8 @@ const routes = [
       {
         path: '/cadastrar-animal',
         component: () => import('src/pages/AnimalSignUp.vue'),
-        name: 'animalSignUp'
+        name: 'animalSignUp',
+        beforeEnter: Guard.auth
       },
       {
         path: '/login',
