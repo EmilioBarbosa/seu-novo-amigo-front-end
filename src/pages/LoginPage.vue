@@ -40,24 +40,26 @@ export default {
 import {ref} from "vue";
 import {api} from 'boot/axios';
 import Cookies from 'js-cookie';
+import {useRouter} from 'vue-router'
 
 const email = ref('');
 const password = ref('');
-
 const error = ref(null);
+const router = useRouter();
 
 function submit() {
   api.post('/login', {
     'email': email.value,
     'password': password.value
   })
-  .then((response) => {
-    Cookies.set('sna_token', response.data.token)
-    Cookies.set('user_id', response.data.id)
-  })
-  .catch((response) => {
-    error.value = true
-  })
+    .then((response) => {
+      Cookies.set('sna_token', response.data.token)
+      Cookies.set('user_id', response.data.id)
+      router.push({name: 'home'})
+    })
+    .catch((response) => {
+      error.value = true
+    })
 }
 </script>
 
@@ -71,7 +73,7 @@ a:hover {
   text-decoration: underline;
 }
 
-.error-message{
+.error-message {
   background-color: white;
   border-radius: 10px 2px;
 }
