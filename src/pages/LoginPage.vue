@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <q-form class="full-width fixed-center q-mt-lg" style="max-width: 300px" @submit.prevent="submit">
+  <div class="flex flex-center">
+    <q-form class="full-width  q-mt-lg" style="max-width: 300px" @submit.prevent="submit">
       <div class="row flex flex-center q-mb-md">
         <img src="src/assets/Seu_novo_amigo_sem_fundo.png" style="width: 250px" alt="Logo da plataforma">
       </div>
