@@ -41,11 +41,13 @@ import {ref} from "vue";
 import {api} from 'boot/axios';
 import Cookies from 'js-cookie';
 import {useRouter} from 'vue-router'
+import { useUserInfo } from "stores/user_store";
 
 const email = ref('');
 const password = ref('');
 const error = ref(null);
 const router = useRouter();
+const userStore = useUserInfo();
 
 function submit() {
   api.post('/login', {
@@ -56,6 +58,7 @@ function submit() {
       Cookies.set('sna_token', response.data.token)
       Cookies.set('user_id', response.data.id)
       router.push({name: 'home'})
+      userStore.getUserInfo()
     })
     .catch((response) => {
       error.value = true
