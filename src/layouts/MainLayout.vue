@@ -17,6 +17,12 @@
           <img src="src/assets/logo_seu_novo_amigo_drawer.png" style="width: 180px" alt="Logo da plataforma">
         </div>
       </div>
+      <div class="row text-center" v-if="userLoggedIn">
+        <div class="col-12">
+          <h6 class="q-ma-none q-pa-none">{{ userStore.name.toUpperCase() }}</h6>
+        </div>
+      </div>
+
         <q-list padding class="menu-list">
           <router-link :to="{name: 'home'}">
             <q-item clickable v-ripple>
@@ -63,7 +69,7 @@
           </router-link>
 
           <q-separator/>
-          <router-link :to="{name: 'login'}">
+          <router-link :to="{name: 'login'}" v-if="!userLoggedIn">
             <q-item clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="login" />
@@ -75,7 +81,7 @@
             </q-item>
           </router-link>
 
-          <router-link :to="{name: 'signUp'}">
+          <router-link :to="{name: 'signUp'}" v-if="!userLoggedIn">
             <q-item clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="person_add" />
@@ -86,6 +92,19 @@
               </q-item-section>
             </q-item>
           </router-link>
+
+          <router-link :to="{name: 'signUp'}" v-if="userLoggedIn">
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="logout" />
+              </q-item-section>
+
+              <q-item-section>
+                Sair
+              </q-item-section>
+            </q-item>
+          </router-link>
+
         </q-list>
     </q-drawer>
     <q-page-container >
@@ -95,23 +114,38 @@
 </template>
 
 <script>
-import { defineComponent, ref } from 'vue'
-
+import { defineComponent} from 'vue'
+import Cookies from 'js-cookie';
 
 export default defineComponent({
-  name: 'MainLayout',
-
-  setup () {
-    const leftDrawerOpen = ref(false)
-
-    return {
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
+  name: 'MainLayout'
 })
+</script>
+
+<script setup>
+import {onMounted, ref} from "vue";
+import { useUserInfo } from "stores/user_store";
+
+const leftDrawerOpen = ref(false);
+const userStore = useUserInfo();
+const userLoggedIn = ref(false);
+
+function toggleLeftDrawer () {
+  leftDrawerOpen.value = !leftDrawerOpen.value
+}
+
+function checkIfUserIsLoggedIn() {
+  const token = Cookies.get('sna_token');
+
+  if (token && userStore.name === null){
+    userStore.getUserInfo();
+    userLoggedIn.value = true
+  }
+}
+onMounted(() => {
+  checkIfUserIsLoggedIn();
+});
+
 </script>
 
 <style>

@@ -18,7 +18,8 @@
         </router-link>
       </div>
       <div class="row flex-center">
-        <q-btn type="submite" color="white" class="text-black q-mb-md" icon-right="pets" label="Entrar"/>
+        <q-btn :loading="loading" type="submite" color="white" class="text-black q-mb-md" icon-right="pets" label="Entrar"/>
+
 
         <router-link :to="{name: 'signUp'}">
           <p>Não possui uma conta ? Cadastre-se</p>
@@ -48,12 +49,11 @@ const password = ref('');
 const error = ref(null);
 const router = useRouter();
 const userStore = useUserInfo();
+let loading = ref(false);
 
 function submit() {
-  api.post('/login', {
-    'email': email.value,
-    'password': password.value
-  })
+  loading.value = true;
+  api.post('/login', { 'email': email.value, 'password': password.value})
     .then((response) => {
       Cookies.set('sna_token', response.data.token)
       Cookies.set('user_id', response.data.id)
@@ -62,6 +62,7 @@ function submit() {
     })
     .catch((response) => {
       error.value = true
+      loading.value = false
     })
 }
 </script>

@@ -7,7 +7,8 @@ export const useUserInfo = defineStore('userInfo', {
     name: null,
     description: null,
     email: null,
-    phones: null
+    phones: null,
+    address: null
   }),
 
   getters: {
@@ -21,8 +22,27 @@ export const useUserInfo = defineStore('userInfo', {
       const user_id = Cookies.get('user_id');
       api.get(`users/${user_id}`)
         .then((response) => {
-          alert(response.data)
+          this.setName(response.data.name);
+          this.setPhones(response.data.phones);
+          this.setAddress(response.data.address);
+          this.setDescription(response.data.description);
+          this.setEmail(response.data.email);
         })
+    },
+    setName(name){
+      this.name = name;
+    },
+    setPhones(phones){
+      this.phones = phones;
+    },
+    setDescription(description){
+      this.description = description;
+    },
+    setAddress(address){
+      this.address = address;
+    },
+    setEmail(email){
+      this.email = email;
     }
   }
 })
