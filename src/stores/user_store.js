@@ -8,7 +8,8 @@ export const useUserInfo = defineStore('userInfo', {
     description: null,
     email: null,
     phones: null,
-    address: null
+    address: null,
+    userLoggedIn: false
   }),
 
   getters: {
@@ -27,6 +28,7 @@ export const useUserInfo = defineStore('userInfo', {
           this.setAddress(response.data.address);
           this.setDescription(response.data.description);
           this.setEmail(response.data.email);
+          this.setUserLoggedIn(true)
         })
     },
     setName(name){
@@ -43,6 +45,9 @@ export const useUserInfo = defineStore('userInfo', {
     },
     setEmail(email){
       this.email = email;
+    },
+    setUserLoggedIn(bool){
+      this.userLoggedIn = bool
     }
   }
 })
