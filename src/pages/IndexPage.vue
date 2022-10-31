@@ -1,10 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/logo_seu_novo_amigo.png"
-      style="width: 200px; height: 200px"
-    >
+
   </q-page>
 </template>
 
@@ -15,3 +11,4 @@ export default defineComponent({
   name: 'IndexPage'
 })
 </script>
+
