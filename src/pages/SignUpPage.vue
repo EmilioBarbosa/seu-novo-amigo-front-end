@@ -1,39 +1,25 @@
 <template>
-  <div class="row teste" style="height: 80vh;">
-    <div class="col-12 col-md-6 flex justify-center items-center" >
-      <div class="text-center">
-        <img src="src/assets/seu_novo_amigo_sem_fundo.png" style="width: 300px" alt="Logo da plataforma">
-        <h5 class="text-bold">CADASTRE-SE E ADOTE SEU NOVO AMIGO</h5>
-      </div>
+  <div class="wrapper q-mt-md text-center">
+    <div class="row flex flex-center">
+      <img src="../assets/Seu_novo_amigo_sem_fundo.png" style="width: 200px">
     </div>
-    <div class="col-12 col-md-6 flex justify-center items-center" >
-      <q-form class="full-width text-center" style="max-width: 300px">
-        <q-input outlined label="Nome" class="q-mb-md" bg-color="white"/>
-        <q-input outlined type="email" class="q-mb-md" label="E-mail" bg-color="white"/>
-        <q-input outlined label="Usuário" class="q-mb-md" bg-color="white"/>
-        <q-input outlined type="password" class="q-mb-md" label="Senha" bg-color="white"/>
-        <q-input outlined type="password" class="q-mb-md" label="Confirme sua senha" bg-color="white"/>
-        <q-btn color="white" class="text-black q-mb-md" icon="fa-solid fa-dog" label="Cadastrar" />
-      </q-form>
+    <div class="row flex flex-center">
+      <h5 class="q-ma-none text-bold">CADASTRE-SE</h5>
     </div>
+    <storeUserForm/>
   </div>
 </template>
 
 <script>
+import storeUserForm from "components/storeUserForm.vue";
 export default {
-  name: "SignUpPage"
+  name: "SignUpPage",
+  components: {
+    storeUserForm
+  }
 }
 </script>
 
 <style scoped>
-@media (max-width: 600px) {
-  .teste{
-    margin-bottom: 400px;
-  }
-}
-@media (max-width: 768px) {
-  .teste{
-    margin-bottom: 400px;
-  }
-}
+
 </style>
