@@ -10,7 +10,6 @@
             dense
             label="Nome"
             :rules="emptyRule"
-            ref="nameRef"
           />
         </div>
         <div class="phone flex flex-center">
@@ -90,7 +89,7 @@
             option-label="name"
             option-value="id"
             outlined
-            :rules="emptyRule"
+            :rules="[value => !!value || 'Campo obrigatório']"
           >
             <template v-slot:option="scope">
               <q-item v-bind="scope.itemProps">
@@ -112,7 +111,7 @@
             option-label="name"
             option-value="id"
             outlined
-            :rules="emptyRule"
+            :rules="[value => !!value || 'Campo obrigatório']"
           >
             <template v-slot:option="scope">
               <q-item v-bind="scope.itemProps">
@@ -145,18 +144,17 @@
         </div>
         <div class="about">
           <q-input
-            v-model="about"
+            v-model="description"
             type="textarea"
             outlined
             bg-color="white"
             dense
-            label="Sobre você"
-            :rules="[value => value.length <= 256 || 'A descrição precisa ser igual ou menor que 256 caracteres']"
+            label="Descrição:"
           />
         </div>
       </div>
       <div class="text-center">
-        <q-btn type="submit" color="black" class="q-mb-md" icon-right="pets" label="Cadastrar-se"/>
+        <q-btn type="submit" :loading="loading" color="black" class="q-mb-md" icon-right="pets" label="Cadastrar-se"/>
       </div>
     </q-card>
 
@@ -178,6 +176,11 @@ export default {
 <script setup>
 import {api} from "boot/axios";
 import {computed, onMounted, ref} from "vue";
+import { useRouter } from 'vue-router';
+import useNotify from "src/composables/UseNotify";
+
+const { notifyError, notifySuccess } = useNotify();
+const router = useRouter();
 
 const stateSelected = ref(null);
 const citySelected = ref(null);
@@ -190,29 +193,29 @@ const password = ref(null);
 const passwordConfirm = ref(null);
 const neighborhood = ref(null);
 const street = ref(null);
-const about = ref(null);
+const description = ref(null);
 const states = ref(null);
 const cities = ref(null);
+const loading = ref(false);
 
-const nameRef = ref(null);
 const emptyRule = [
   value => value && value.length > 0 || 'Campo obrigatório'
 ];
 const phoneRules = [
   value => value && value.length > 0 || 'Campo obrigatório',
-  value => value.lenght < 11 || 'Telefone precisa ter no mínimo 10 caracteres'
-]
+  value => value.length >= 10 || 'Telefone precisa ter no mínimo 10 caracteres'
+];
 
 const passwordRules = [
   value => value && value.length > 0 || 'Campo obrigatório',
   value => value.length >= 8 || 'A senha precisa ter no mínimo 8 caracteres'
-]
+];
 
 const passwordConfirmRules = [
   value => value && value.length > 0 || 'Campo obrigatório',
   value => value.length >= 8 || 'A senha precisa ter no mínimo 8 caracteres',
   value => value === password.value || 'A senha informada não coincide'
-]
+];
 
 const phoneMask = computed(() =>  {
   return phone?.value?.length > 10 ? '(##) #####-####' : '(##) ####-#####';
@@ -221,48 +224,59 @@ const phoneMask = computed(() =>  {
 const citiesOfSelectedState = computed(() => {
   if (stateSelected.value && cities) {
     return cities.value.filter((item) => {
-      return item.state_id === stateSelected.value.id
+      return item.state_id === stateSelected.value.id;
     })
   }
-})
+});
 
 function submit() {
-  nameRef.value.validate()
-  // api.post('/users', {
-  //   'name': name.value,
-  //   'email': email.value,
-  //   'email_confirmation': emailConfirm.value,
-  //   'description': about.value,
-  //   'password': password.value,
-  //   'password_confirmation': passwordConfirm.value,
-  //   'phone_number': phone.value,
-  //   'phone_number_whatsapp': phoneWpp.value,
-  //   'street': street.value,
-  //   'neighborhood': neighborhood.value,
-  //   'city_id': citySelected.value.id
-  // })
-  //   .then(response => {
-  //     console.log(response)
-  //   }).catch(error => {
-  //   console.log(error.response.data.errors)
-  // })
+  loading.value = true
+  api.post('/users', {
+    'name': name.value,
+    'email': email.value,
+    'email_confirmation': emailConfirm.value,
+    'description': description.value,
+    'password': password.value,
+    'password_confirmation': passwordConfirm.value,
+    'phone_number': phone.value,
+    'phone_number_whatsapp': phoneWpp.value,
+    'street': street.value,
+    'neighborhood': neighborhood.value,
+    'city_id': citySelected.value.id
+  })
+    .then(response => {
+      loading.value = false
+      notifySuccess('Cadastro realizado com sucesso !')
+      router.push({name: 'login'})
+    }).catch(error => {
+      loading.value = false
+      trataErros(error.response.data.errors)
+  })
+}
+
+function trataErros(erros) {
+  for(let erro in erros){
+    for (let item in erros[erro]){
+      notifyError(erros[erro][item])
+    }
+  }
 }
 
 function getStates() {
   api.get('/states').then(response => {
-    states.value = response.data
-  })
+    states.value = response.data;
+  });
 }
 
 function getCities() {
   api.get('/cities').then(response => {
-    cities.value = response.data
-  })
+    cities.value = response.data;
+  });
 }
 
 onMounted(() => {
-  getStates()
-  getCities()
+  getStates();
+  getCities();
 })
 </script>
 
