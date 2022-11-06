@@ -49,7 +49,7 @@ const password = ref('');
 const error = ref(null);
 const router = useRouter();
 const userStore = useUserInfo();
-let loading = ref(false);
+const loading = ref(false);
 
 function submit() {
   loading.value = true;
