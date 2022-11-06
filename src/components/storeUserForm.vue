@@ -1,96 +1,189 @@
 <template>
-  <q-form @submit.prevent="submit">
-    <div class="form" >
-      <div class="name">
-        <q-input outlined bg-color="white" v-model="name" dense label="Nome"/>
-      </div>
-      <div class="phone flex flex-center">
-        <div class="input-phone">
-          <q-input outlined bg-color="white" v-model="phone" dense label="Telefone"/>
+  <q-form @submit.prevent="submit" class="q-pa-lg">
+    <q-card>
+      <div class="form">
+        <div class="name">
+          <q-input
+            outlined
+            bg-color="white"
+            v-model="name"
+            dense
+            label="Nome"
+            :rules="emptyRule"
+            ref="nameRef"
+          />
         </div>
-        <div class="phone-wpp text-center">
-          <q-checkbox v-model="phoneWpp"  left-label label="Telefone com Whatsapp ?" />
+        <div class="phone flex flex-center">
+          <div class="input-phone">
+            <q-input
+              :mask="phoneMask"
+              unmasked-value
+              outlined
+              bg-color="white"
+              v-model="phone"
+              dense
+              label="Telefone"
+              :rules="phoneRules"
+              lazy-rules
+            />
+          </div>
+          <div class="phone-wpp text-center">
+            <q-checkbox
+              v-model="phoneWpp"
+              left-label
+              label="Telefone com Whatsapp ?"
+            />
+          </div>
+        </div>
+        <div class="email">
+          <q-input
+            v-model="email"
+            outlined
+            bg-color="white"
+            dense
+            label="E-mail"
+            :rules="emptyRule"
+          />
+        </div>
+        <div class="email-confirm">
+          <q-input
+            v-model="emailConfirm"
+            outlined
+            bg-color="white"
+            dense
+            label="Confirme seu e-mail"
+            :rules="emptyRule"
+          />
+        </div>
+        <div class="password">
+          <q-input
+            v-model="password"
+            outlined
+            type="password"
+            bg-color="white"
+            dense
+            label="Senha"
+            :rules="passwordRules"
+            lazy-rules
+          />
+        </div>
+        <div class="password-confirm">
+          <q-input
+            v-model="passwordConfirm"
+            outlined
+            type="password"
+            bg-color="white"
+            dense
+            label="Confirme sua senha"
+            :rules="passwordConfirmRules"
+            lazy-rules
+          />
+        </div>
+        <div class="state">
+          <q-select
+            label="Estado"
+            color="q-pa-none"
+            v-model="stateSelected"
+            bg-color="white"
+            dense
+            :options="states"
+            option-label="name"
+            option-value="id"
+            outlined
+            :rules="emptyRule"
+          >
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section class="text-black">
+                  <q-item-label>{{ scope.opt.name }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+          </q-select>
+        </div>
+        <div class="city">
+          <q-select
+            label="Cidade"
+            color="q-pa-none"
+            v-model="citySelected"
+            bg-color="white"
+            dense
+            :options="citiesOfSelectedState"
+            option-label="name"
+            option-value="id"
+            outlined
+            :rules="emptyRule"
+          >
+            <template v-slot:option="scope">
+              <q-item v-bind="scope.itemProps">
+                <q-item-section class="text-black">
+                  <q-item-label>{{ scope.opt.name }}</q-item-label>
+                </q-item-section>
+              </q-item>
+            </template>
+          </q-select>
+        </div>
+        <div class="neighborhood">
+          <q-input
+            v-model="neighborhood"
+            outlined
+            bg-color="white"
+            dense
+            label="Bairro"
+            :rules="emptyRule"
+          />
+        </div>
+        <div class="street">
+          <q-input
+            v-model="street"
+            outlined
+            bg-color="white"
+            dense
+            label="Logradouro"
+            :rules="emptyRule"
+          />
+        </div>
+        <div class="about">
+          <q-input
+            v-model="about"
+            type="textarea"
+            outlined
+            bg-color="white"
+            dense
+            label="Sobre você"
+            :rules="[value => value.length <= 256 || 'A descrição precisa ser igual ou menor que 256 caracteres']"
+          />
         </div>
       </div>
-      <div class="email">
-        <q-input v-model="email" outlined bg-color="white" dense label="E-mail"/>
+      <div class="text-center">
+        <q-btn type="submit" color="black" class="q-mb-md" icon-right="pets" label="Cadastrar-se"/>
       </div>
-      <div class="email-confirm">
-        <q-input v-model="emailConfirm" outlined bg-color="white" dense label="Confirme seu e-mail"/>
-      </div>
-      <div class="password">
-        <q-input v-model="password" outlined type="password" bg-color="white" dense label="Senha"/>
-      </div>
-      <div class="password-confirm">
-        <q-input v-model="passwordConfirm" outlined type="password" bg-color="white" dense label="Confirme sua senha"/>
-      </div>
-      <div class="state">
-        <q-select
-          label="Estado"
-          color="q-pa-none"
-          v-model="stateSelected"
-          bg-color="white"
-          dense
-          :options="states"
-          option-label="name"
-          option-value="id"
-        >
-          <template v-slot:option="scope">
-            <q-item v-bind="scope.itemProps">
-              <q-item-section class="text-black">
-                <q-item-label>{{ scope.opt.name }}</q-item-label>
-              </q-item-section>
-            </q-item>
-          </template>
-        </q-select>
-      </div>
-      <div class="city">
-        <q-select label="Cidade" color="q-pa-none" v-model="citySelected" bg-color="white" dense :options="citiesOfSelectedState" option-label="name" option-value="id">
-          <template v-slot:option="scope">
-            <q-item v-bind="scope.itemProps">
-              <q-item-section class="text-black">
-                <q-item-label>{{ scope.opt.name }}</q-item-label>
-              </q-item-section>
-            </q-item>
-          </template>
-        </q-select>
-      </div>
-      <div class="neighborhood">
-        <q-input v-model="neighborhood" outlined bg-color="white" dense label="Bairro"/>
-      </div>
-      <div class="street">
-        <q-input v-model="street" outlined bg-color="white" dense label="Logradouro"/>
-      </div>
-      <div class="about">
-        <q-input v-model="about" type="textarea" outlined bg-color="white" dense label="Sobre você"/>
-      </div>
-    </div>
-    <div class="text-center">
-      <q-btn type="submit" color="white" class="text-black q-mb-md" icon-right="pets" label="Cadastrar-se"/>
-    </div>
+    </q-card>
+
   </q-form>
+
 </template>
 
 <script>
-import { NSelect } from 'naive-ui'
+import {NSelect} from 'naive-ui'
 
 export default {
   name: "storeUserForm",
-  components:{
+  components: {
     NSelect
   }
 }
 </script>
 
 <script setup>
-import { api } from "boot/axios";
+import {api} from "boot/axios";
 import {computed, onMounted, ref} from "vue";
 
 const stateSelected = ref(null);
 const citySelected = ref(null);
 const name = ref(null);
 const phone = ref(null);
-const phoneWpp = ref(null);
+const phoneWpp = ref(false);
 const email = ref(null);
 const emailConfirm = ref(null);
 const password = ref(null);
@@ -98,44 +191,69 @@ const passwordConfirm = ref(null);
 const neighborhood = ref(null);
 const street = ref(null);
 const about = ref(null);
-
 const states = ref(null);
 const cities = ref(null);
 
+const nameRef = ref(null);
+const emptyRule = [
+  value => value && value.length > 0 || 'Campo obrigatório'
+];
+const phoneRules = [
+  value => value && value.length > 0 || 'Campo obrigatório',
+  value => value.lenght < 11 || 'Telefone precisa ter no mínimo 10 caracteres'
+]
+
+const passwordRules = [
+  value => value && value.length > 0 || 'Campo obrigatório',
+  value => value.length >= 8 || 'A senha precisa ter no mínimo 8 caracteres'
+]
+
+const passwordConfirmRules = [
+  value => value && value.length > 0 || 'Campo obrigatório',
+  value => value.length >= 8 || 'A senha precisa ter no mínimo 8 caracteres',
+  value => value === password.value || 'A senha informada não coincide'
+]
+
+const phoneMask = computed(() =>  {
+  return phone?.value?.length > 10 ? '(##) #####-####' : '(##) ####-#####';
+});
+
 const citiesOfSelectedState = computed(() => {
-   if (stateSelected.value && cities){
-     return cities.value.filter((item) => {
-       return item.state_id === stateSelected.value.id
-     })
-   }
+  if (stateSelected.value && cities) {
+    return cities.value.filter((item) => {
+      return item.state_id === stateSelected.value.id
+    })
+  }
 })
 
 function submit() {
-  api.post('/users', {
-    'name': name.value,
-    'email': email.value,
-    'email_confirmation': emailConfirm.value,
-    'description': about.value,
-    'password': password.value,
-    'password_confirmation': passwordConfirm.value,
-    'phone_number': phone.value,
-    'phone_number_whatsapp': phoneWpp.value,
-    'street': street.value,
-    'neighborhood': neighborhood.value,
-    'city_id': citySelected.value.id
-  })
-  .then(response =>{
-    console.log(response)
-  }).catch(response => {
-    console.log(response)
-  })
-
+  nameRef.value.validate()
+  // api.post('/users', {
+  //   'name': name.value,
+  //   'email': email.value,
+  //   'email_confirmation': emailConfirm.value,
+  //   'description': about.value,
+  //   'password': password.value,
+  //   'password_confirmation': passwordConfirm.value,
+  //   'phone_number': phone.value,
+  //   'phone_number_whatsapp': phoneWpp.value,
+  //   'street': street.value,
+  //   'neighborhood': neighborhood.value,
+  //   'city_id': citySelected.value.id
+  // })
+  //   .then(response => {
+  //     console.log(response)
+  //   }).catch(error => {
+  //   console.log(error.response.data.errors)
+  // })
 }
+
 function getStates() {
   api.get('/states').then(response => {
     states.value = response.data
   })
 }
+
 function getCities() {
   api.get('/cities').then(response => {
     cities.value = response.data
@@ -149,9 +267,9 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.form{
+.form {
   display: grid;
-  grid-template-columns: 1fr 1fr ;
+  grid-template-columns: 1fr 1fr;
   grid-template-areas:
   'name phone'
   'email email-confirm'
@@ -159,52 +277,68 @@ onMounted(() => {
   'state city'
   'neighborhood street'
   'about about';
-  gap: 5px;
+  gap: 15px;
   padding: 20px;
 }
-.name{
+
+.name {
   grid-area: name;
 }
-.email{
+
+.email {
   grid-area: email;
 }
-.email-confirm{
+
+.email-confirm {
   grid-area: email-confirm;
 }
-.phone{
+
+.phone {
   grid-area: phone;
 }
-.state{
+
+.state {
   grid-area: state;
 }
-.city{
+
+.city {
   grid-area: city;
 }
-.neighborhood{
+
+.neighborhood {
   grid-area: neighborhood;
 }
-.street{
+
+.street {
   grid-area: street;
 }
-.about{
+
+.about {
   grid-area: about;
 }
-.password{
+
+.password {
   grid-area: password;
 }
-.password-confirm{
+
+.password-confirm {
   grid-area: password-confirm;
 }
-.input-phone{
+
+.input-phone {
   width: 50%;
 }
-.phone-wpp{
+
+.phone-wpp {
   width: 50%;
+  color:black
 }
+
 @media (max-width: 480px) {
   .form {
     display: block;
   }
+
   .name,
   .email,
   .email-confirm,
@@ -215,7 +349,7 @@ onMounted(() => {
   .phone,
   .about,
   .neighborhood,
-  .street{
+  .street {
     margin-bottom: 5px;
   }
 }
