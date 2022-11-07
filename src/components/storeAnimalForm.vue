@@ -1,7 +1,7 @@
 <template>
-  <q-form class="q-px-lg q-pb-lg">
+  <q-form class="q-px-lg q-pb-lg" @submit.prevent="submit">
     <q-card>
-      <div class="form">
+      <div class="form" >
         <div class="name">
           <q-input
             outlined
@@ -28,7 +28,7 @@
             outlined
             bg-color="white"
             dense
-            label="Peso"
+            label="Peso(em quilos)"
             :rules="[value => !!value || 'Campo obrigatório']"
             type="number"
           />
@@ -37,7 +37,7 @@
           <q-select
             label="Sexo"
             color="q-pa-none"
-            v-model="form.sex"
+            v-model="sex"
             bg-color="white"
             dense
             :options="[{value: 'M', name: 'Macho'}, {value: 'F', name: 'Fêmea'}]"
@@ -56,14 +56,13 @@
         </div>
         <div class="animal-size">
           <q-select
-            v-model="form.animal_size_id"
+            v-model="animalSize"
             label="Porte"
             color="q-pa-none"
             bg-color="white"
             dense
             :options="[{value: 1, name: 'Pequeno'}, {value: 2, name: 'Médio'}, {value: 3, name: 'Grande'}]"
             option-label="name"
-            option-value="value"
             outlined
             :rules="[value => !!value || 'Campo obrigatório']"
           >
@@ -78,7 +77,7 @@
         </div>
         <div class="species">
           <q-select
-            v-model="form.species_id"
+            v-model="species"
             label="Espécie"
             color="q-pa-none"
             bg-color="white"
@@ -134,7 +133,7 @@
         </div>
         <div class="pictures">
           <q-file
-            v-model="form.pictures"
+            v-model="form.images"
             color="purple"
             outlined
             dense
@@ -144,7 +143,7 @@
             :rules="[value => !!value || 'Campo obrigatório']"
           >
             <template v-slot:prepend class="text-black">
-              <q-icon name="cloud_upload" />
+              <q-icon name="cloud_upload"/>
             </template>
           </q-file>
         </div>
@@ -161,7 +160,8 @@
 
       </div>
       <div class="text-center">
-        <q-btn type="submit" :loading="loading" color="black" class="q-mb-md" icon-right="pets" label="Cadastrar Animal"/>
+        <q-btn type="submit" :loading="loading" color="black" class="q-mb-md" icon-right="pets"
+               label="Cadastrar Animal"/>
       </div>
     </q-card>
 
@@ -176,12 +176,36 @@ export default {
 
 <script setup>
 import {computed, ref} from "vue";
+import Cookies from 'js-cookie';
+import {api} from "boot/axios";
 
 const ageNumber = ref(null);
 const ageMonthYear = ref(null)
-const ageCombine = computed(()=>{
-  if(ageNumber.value && ageMonthYear.value.value){
+const sex = ref(null);
+const animalSize = ref(null);
+const species = ref(null);
+
+const ageCombine = computed(() => {
+  if (ageNumber.value && ageMonthYear.value.value) {
     return ageNumber.value + ' ' + ageMonthYear.value.value
+  }
+});
+
+const sexComputed = computed(() => {
+  if (sex.value) {
+    return sex.value.value
+  }
+});
+
+const animalSizeComputed = computed(() => {
+  if (animalSize.value) {
+    return animalSize.value.value
+  }
+});
+
+const speciesComputed = computed(() => {
+  if (species.value) {
+    return species.value.value
   }
 });
 
@@ -189,16 +213,27 @@ const form = ref({
   name: null,
   breed: null,
   weight: null,
-  sex: null,
-  animal_size_id: null,
-  species_id: null,
-  age: ageCombine,
-  pictures: null,
+  images: null,
   description: null,
   adopted: false,
-  user_id: 1
+  user_id: Cookies.get('user_id')
 })
 
+function submit() {
+  api.post('/animals', {form},
+    {
+      headers: {
+        authorization: [
+          `Bearer ${Cookies.get('sna_token')}`
+        ]
+      }
+    }).then(response => {
+      console.log(response)
+    })
+    .catch(response => {
+      console.log(response)
+    })
+}
 </script>
 
 <style scoped>
@@ -214,41 +249,53 @@ const form = ref({
   gap: 15px;
   padding: 20px;
 }
-.name{
+
+.name {
   grid-area: name;
 }
-.breed{
+
+.breed {
   grid-area: breed;
 }
-.weight{
+
+.weight {
   grid-area: weight;
 }
-.sex{
+
+.sex {
   grid-area: sex;
 }
-.animal-size{
+
+.animal-size {
   grid-area: animal-size;
 }
-.species{
+
+.species {
   grid-area: species;
 }
-.age{
+
+.age {
   display: flex;
   grid-area: age;
 }
-.pictures{
+
+.pictures {
   grid-area: pictures;
 }
-.description{
+
+.description {
   grid-area: description;
 }
-.number-age{
+
+.number-age {
   width: 40%;
   margin-right: 5px;
 }
-.select-age{
+
+.select-age {
   width: 60%;
 }
+
 @media (max-width: 480px) {
   .form {
     display: block;
