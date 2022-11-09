@@ -1,33 +1,40 @@
 <template>
   <q-card @click="openAnimalDialog" class="card rounded-borders cursor-pointer" style="width: 230px;height: 336px;">
-    <img src="https://cdn.quasar.dev/img/mountains.jpg" style="height: 70%;">
+    <img :src="animalImage" style="height: 70%;">
 
     <q-card-section class="text-black">
-      <div class="text-h6" style="color: #6A4A6D">Luke</div>
-      <div class="text-subtitle2 text-grey-14">SRD</div>
+      <div class="text-h6" style="color: #6A4A6D">{{ props.name.toUpperCase() }}</div>
+      <div class="text-subtitle2 text-grey-14">{{ props.breed.toUpperCase() }}</div>
     </q-card-section>
   </q-card>
 </template>
 
 <script>
-
-import { useRouter } from 'vue-router'
-
 export default {
   name: "cardInformacaoAnimal",
-  setup(){
-    const router = useRouter()
-
-    function openAnimalDialog(){
-      router.push({name: 'AnimalDetails'})
-    }
-
-
-    return {
-      openAnimalDialog
-    }
-  }
 }
+</script>
+
+<script setup>
+import {useRouter} from "vue-router";
+import {computed} from "vue";
+
+const animalImage = computed(()=> {
+  return `http://localhost:8000/api/image/animal/${props.picture.substring(15)}`;
+})
+
+const props = defineProps({
+  id: Number,
+  name: String,
+  breed: String,
+  picture: String
+})
+const router = useRouter()
+
+function openAnimalDialog(){
+  router.push({name: 'AnimalDetails'})
+}
+
 </script>
 
 <style scoped>
