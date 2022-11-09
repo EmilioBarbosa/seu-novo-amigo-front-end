@@ -23,15 +23,19 @@
         </div>
       </div>
       <div class="flex flex-center">
-        <q-btn color="white" class="text-black q-mb-md q-mt-lg" size="lg" icon-right="pets" label="adotar" v-if="animalInfo"/>
+        <dialogContato v-if="animalInfo"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import dialogContato from "components/dialogContato.vue";
 export default {
-  name: "AnimalDetailsPage"
+  name: "AnimalDetailsPage",
+  components: {
+    dialogContato
+  }
 }
 </script>
 
