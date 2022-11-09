@@ -1,7 +1,7 @@
 <template>
   <q-form class="q-px-lg q-pb-lg" @submit.prevent="submit">
     <q-card>
-      <div class="form" >
+      <div class="form">
         <div class="name">
           <q-input
             outlined
@@ -9,7 +9,7 @@
             v-model="form.name"
             dense
             label="Nome"
-            :rules="[value => !!value || 'Campo obrigatório']"
+            :rules="[value => !!value || 'Campo obrigatório', value => !!value && value.length <= 15 || 'O nome pode ter no máximo 15 caracteres']"
           />
         </div>
         <div class="breed">
@@ -133,7 +133,7 @@
         </div>
         <div class="pictures">
           <q-file
-            v-model="form.images"
+            v-model="images"
             color="purple"
             outlined
             dense
@@ -160,8 +160,14 @@
 
       </div>
       <div class="text-center">
-        <q-btn type="submit" :loading="loading" color="black" class="q-mb-md" icon-right="pets"
-               label="Cadastrar Animal"/>
+        <q-btn
+          type="submit"
+          :loading="loading"
+          color="black"
+          class="q-mb-md"
+          icon-right="pets"
+          label="Cadastrar Animal"
+        />
       </div>
     </q-card>
 
@@ -175,15 +181,21 @@ export default {
 </script>
 
 <script setup>
+import useNotify from "src/composables/UseNotify";
 import {computed, ref} from "vue";
 import Cookies from 'js-cookie';
 import {api} from "boot/axios";
 
+const { notifyError, notifySuccess } = useNotify();
+const emit = defineEmits(['refreshComponent'])
+
+const myForm = ref(null);
 const ageNumber = ref(null);
 const ageMonthYear = ref(null)
 const sex = ref(null);
 const animalSize = ref(null);
 const species = ref(null);
+const loading = ref(false);
 
 const ageCombine = computed(() => {
   if (ageNumber.value && ageMonthYear.value.value) {
@@ -209,29 +221,54 @@ const speciesComputed = computed(() => {
   }
 });
 
+const images = ref(null);
+
 const form = ref({
   name: null,
   breed: null,
   weight: null,
-  images: null,
   description: null,
-  adopted: false,
-  user_id: Cookies.get('user_id')
+  adopted: 0, // false
+  user_id: Cookies.get('user_id'),
+  sex: sexComputed,
+  animalSize: animalSizeComputed,
+  species: speciesComputed,
+  age: ageCombine
 })
 
+function formData() {
+  let formData = new FormData();
+  formData.append('images[]', images.value[0])
+  formData.append('images[]', images.value[1])
+  formData.append('name', form.value.name)
+  formData.append('breed', form.value.breed)
+  formData.append('weight', form.value.weight)
+  formData.append('description', form.value.description)
+  formData.append('adopted', form.value.adopted)
+  formData.append('user_id', form.value.user_id)
+  formData.append('sex', form.value.sex)
+  formData.append('animal_size_id', form.value.animalSize)
+  formData.append('species_id', form.value.species)
+  formData.append('age', form.value.age)
+  return formData;
+}
+
+
 function submit() {
-  api.post('/animals', {form},
-    {
-      headers: {
-        authorization: [
-          `Bearer ${Cookies.get('sna_token')}`
-        ]
-      }
-    }).then(response => {
-      console.log(response)
+  loading.value = true
+  api.post('/animals', formData(), {
+    headers: {
+      "Content-Type": "multipart/form-data"
+    },
+   })
+    .then(response => {
+      loading.value = false
+      emit('refreshComponent')
+      notifySuccess('Animal cadastrado com sucesso !')
     })
     .catch(response => {
-      console.log(response)
+      loading.value = false
+      notifyError('Ocorreu um erro ao cadastrar o animal')
     })
 }
 </script>

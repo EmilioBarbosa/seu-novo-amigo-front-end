@@ -7,7 +7,7 @@
         <q-icon size="md" class="icon" name="edit_note"></q-icon>
       </h5>
     </div>
-    <storeAnimalForm/>
+    <storeAnimalForm @refreshComponent="refreshComponent" :key="key"/>
   </div>
 </template>
 
@@ -21,6 +21,18 @@ export default {
   }
 }
 </script>
+
+<script setup>
+import {ref} from "vue";
+
+const key = ref(0);
+
+function refreshComponent() {
+  key.value++
+}
+
+</script>
+
 
 <style scoped>
 .icon {
