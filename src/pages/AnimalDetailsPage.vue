@@ -1,37 +1,29 @@
 <template>
   <div class="container">
     <div class="images">
-      <img class="image" src="https://cdn.quasar.dev/img/mountains.jpg">
+      <img class="image" :src="animalImage" v-if="animalInfo">
     </div>
-    <div class="galery">
-      <img class="galeryImage" src="https://cdn.quasar.dev/img/mountains.jpg">
-      <img class="galeryImage" src="https://cdn.quasar.dev/img/mountains.jpg">
-    </div>
+<!--    <div class="galery">-->
+<!--      <img class="galeryImage" src="https://cdn.quasar.dev/img/mountains.jpg">-->
+<!--      <img class="galeryImage" src="https://cdn.quasar.dev/img/mountains.jpg">-->
+<!--    </div>-->
     <div class="information">
       <div class="title">
-        <h3 class="q-ma-none text-bold">LUKE</h3>
-        <p class="text-bold q-mt-sm">Cachorro | Macho | 1 ano | Porte Médio</p>
+        <h3 class="q-ma-none text-bold q-mb-sm" v-if="animalInfo">{{animalInfo.name.toUpperCase()}}</h3>
+        <p class="text-bold q-mt-sm" v-if="animalInfo">{{subtitle}}</p>
       </div>
       <div class="animalInfo">
-        <p class="text-bold q-ma-none">Raça: SRD</p>
-        <p class="text-bold q-ma-none">Peso: 10kg</p>
-        <p class="text-bold q-ma-none">Se encontra em: Palhoça - Santa Catarina</p>
-        <p class="text-bold">Responsável: Emilio Barbosa</p>
-        <div class="about">
-          <p class="text-bold">Sobre o Luke:</p>
-          <span class="text-bold">Contrary to popular belief, Lorem Ipsum is not simply random text.
-            It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
-            Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the
-            more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of
-            the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections
-            1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,
-            written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.
-            The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-          </span>
+        <p class="text-bold q-ma-none" v-if="animalInfo">Raça: {{animalInfo.breed}}</p>
+        <p class="text-bold q-ma-none" v-if="animalInfo">Peso: {{animalInfo.weight}}kg</p>
+        <p class="text-bold q-ma-none" v-if="animalInfo">Se encontra em: {{ animalInfo.owner.address.city.name }} - {{ animalInfo.owner.address.city.state.name }} </p>
+        <p class="text-bold" v-if="animalInfo">Responsável: {{animalInfo.owner.name.toUpperCase()}}</p>
+        <div class="about" v-if="animalInfo && animalInfo.description !== 'null'">
+          <p class="text-bold">Sobre:</p>
+          <span class="text-bold" >{{animalInfo.description}}</span>
         </div>
       </div>
       <div class="flex flex-center">
-        <q-btn color="white" class="text-black q-mb-md q-mt-lg" size="lg" icon-right="pets" label="adotar" />
+        <q-btn color="white" class="text-black q-mb-md q-mt-lg" size="lg" icon-right="pets" label="adotar" v-if="animalInfo"/>
       </div>
     </div>
   </div>
@@ -41,6 +33,42 @@
 export default {
   name: "AnimalDetailsPage"
 }
+</script>
+
+<script setup>
+import {api} from "boot/axios";
+import {computed, onMounted, ref} from "vue";
+import { useRoute } from 'vue-router'
+
+const router = useRoute();
+
+const animalInfo = ref(null);
+
+const animalImage = computed(()=> {
+  if (animalInfo){
+    return `http://localhost:8000/api/image/animal/${animalInfo.value.picture_1.substring(15)}`;
+  }
+})
+const sex = computed(()=>{
+  if(animalInfo){
+    return animalInfo.sex === 'M' ? 'Macho': 'Fêmea'
+  }
+})
+const subtitle = computed(()=>{
+  if (animalInfo){
+    return `${animalInfo.value.species.name} | ${sex.value} | ${animalInfo.value.age} | Porte ${animalInfo.value.animal_size.name}`
+  }
+})
+
+function getAnimalInfo() {
+  api.get(`/animals/${router.params.id}`)
+    .then(response => animalInfo.value = response.data)
+    .catch(response => alert(response))
+}
+
+onMounted(()=>{
+  getAnimalInfo()
+})
 </script>
 
 <style scoped>
@@ -58,6 +86,7 @@ export default {
 }
 .images{
   grid-area: images;
+  min-height: 450px;
 }
 .image{
   width: 100%;
@@ -98,6 +127,9 @@ h3{
   .galery{
     display: flex;
     justify-content: center;
+  }
+  .images{
+    min-height: 300px;
   }
 }@media (max-width: 768px) {
   .container{
