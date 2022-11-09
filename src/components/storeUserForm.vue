@@ -163,13 +163,9 @@
 </template>
 
 <script>
-import {NSelect} from 'naive-ui'
 
 export default {
   name: "storeUserForm",
-  components: {
-    NSelect
-  }
 }
 </script>
 

@@ -32,7 +32,7 @@ const props = defineProps({
 const router = useRouter()
 
 function openAnimalDialog(){
-  router.push({name: 'AnimalDetails'})
+  router.push({name: 'AnimalDetails', params :{id: props.id}})
 }
 
 </script>

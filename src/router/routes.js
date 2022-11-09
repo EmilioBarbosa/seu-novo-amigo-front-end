@@ -43,7 +43,7 @@ const routes = [
         name: 'about'
       },
       {
-        path: '/informacoes-do-animal',
+        path: '/informacoes-do-animal/:id',
         component: () => import('pages/AnimalDetailsPage.vue'),
         name: 'AnimalDetails'
       },
