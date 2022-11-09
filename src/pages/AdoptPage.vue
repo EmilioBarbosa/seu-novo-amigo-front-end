@@ -7,47 +7,16 @@
           <q-select outlined label="Cidade" dense class="select cidade" bg-color="white"/>
         </div>
       </div>
-      <div class="cards">
-        <div class="card">
-          <AnimalInformationCard/>
-        </div>
-        <div class="card">
-          <AnimalInformationCard/>
-        </div>
-        <div class="card">
-        <AnimalInformationCard/>
-        </div>
-        <div class="card">
-          <AnimalInformationCard/>
-        </div>
-        <div class="card">
-          <AnimalInformationCard/>
-        </div>
-        <div class="card">
-          <AnimalInformationCard/>
-        </div>
-        <div class="card">
-          <AnimalInformationCard/>
-        </div>
-        <div class="card">
-          <AnimalInformationCard/>
-        </div>
-        <div class="card">
-          <AnimalInformationCard/>
-        </div>
-        <div class="card">
-          <AnimalInformationCard/>
-        </div>
-      </div>
+    <displayAllAnimals class="cards"/>
   </div>
 </template>
 
 <script>
-import AnimalInformationCard from "components/AnimalInformationCard.vue";
+import DisplayAllAnimals from "pages/DisplayAllAnimals.vue";
 export default {
   name: "AdoptPage",
   components: {
-    AnimalInformationCard
+    DisplayAllAnimals
 }
 }
 </script>
@@ -67,17 +36,6 @@ export default {
 .info{
   grid-area: info;
 
-}
-
-.cards{
-  grid-area: cards;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.card{
-  grid-area: card;
 }
 
 .select{
@@ -104,9 +62,7 @@ h4{
   .filtros{
     justify-content: center;
   }
-  .cards{
-    justify-content: center;
-  }
+
   .cidade{
     margin-left: 0;
   }
@@ -123,9 +79,6 @@ h4{
   .filtros{
     justify-content: center;
   }
-  .cards{
-    justify-content: center;
-  }
 }
 
 @media (max-width: 1024px) {
@@ -139,9 +92,6 @@ h4{
     text-align: center;
   }
   .filtros{
-    justify-content: center;
-  }
-  .cards{
     justify-content: center;
   }
 }
