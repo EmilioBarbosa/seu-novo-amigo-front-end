@@ -23,7 +23,10 @@
         </div>
       </div>
       <div class="flex flex-center">
-        <dialogContato v-if="animalInfo"/>
+        <dialogContato
+          :phone="animalInfo.owner.phones[0]"
+          v-if="animalInfo"
+        />
       </div>
     </div>
   </div>
@@ -91,6 +94,7 @@ onMounted(()=>{
 .images{
   grid-area: images;
   min-height: 450px;
+  max-height: 450px;
 }
 .image{
   width: 100%;

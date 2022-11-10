@@ -14,7 +14,7 @@
     <q-drawer v-model="leftDrawerOpen" bordered class="drawer text-black">
       <div class="row text-center">
         <div class="col-12 block q-mt-md">
-          <img src="src/assets/logo_seu_novo_amigo_drawer.png" style="width: 180px" alt="Logo da plataforma">
+          <img src="src/assets/Seu_novo_amigo_sem_fundo.png" style="width: 180px" alt="Logo da plataforma">
         </div>
       </div>
       <div class="row text-center" v-if="userStore.userLoggedIn">
