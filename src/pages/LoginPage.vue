@@ -2,7 +2,7 @@
   <div class="flex flex-center">
     <q-form class="full-width  q-mt-lg" style="max-width: 300px" @submit.prevent="submit">
       <div class="row flex flex-center q-mb-md">
-        <img src="/src/assets/Seu_novo_amigo_sem_fundo.png" style="width: 250px" alt="Logo da plataforma">
+        <img src="../assets/Seu_novo_amigo_sem_fundo.png" style="width: 250px" alt="Logo da plataforma">
       </div>
       <div>
         <q-input outlined v-model="email" label="Usuário" class="q-mb-md" bg-color="white"/>
