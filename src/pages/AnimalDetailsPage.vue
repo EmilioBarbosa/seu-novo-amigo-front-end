@@ -53,7 +53,7 @@ const animalInfo = ref(null);
 
 const animalImage = computed(()=> {
   if (animalInfo){
-    return `http://localhost:8000/api/image/animal/${animalInfo.value.picture_1.substring(15)}`;
+    return `https://api-seu-novo-amigo-production.up.railway.app/api/image/animal/${animalInfo.value.picture_1.substring(15)}`;
   }
 })
 const sex = computed(()=>{

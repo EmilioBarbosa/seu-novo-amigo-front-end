@@ -20,7 +20,7 @@ import {useRouter} from "vue-router";
 import {computed} from "vue";
 
 const animalImage = computed(()=> {
-  return `http://localhost:8000/api/image/animal/${props.picture.substring(15)}`;
+  return `https://api-seu-novo-amigo-production.up.railway.app/api/image/animal/${props.picture.substring(15)}`;
 })
 
 const props = defineProps({
