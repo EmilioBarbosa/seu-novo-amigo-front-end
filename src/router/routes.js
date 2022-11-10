@@ -39,7 +39,7 @@ const routes = [
       },
       {
         path: '/sobre',
-        component: () => import('pages/AboutPage.vue'),
+        component: () => import('pages/aboutPage.vue'),
         name: 'about'
       },
       {
