@@ -2,10 +2,10 @@
   <div class="container">
       <div class="info items-center block">
         <h4 class="text-bold">Animais para adoção</h4>
-        <div class="flex filtros">
-          <q-select outlined label="Estado" dense class="select" bg-color="white"/>
-          <q-select outlined label="Cidade" dense class="select cidade" bg-color="white"/>
-        </div>
+<!--        <div class="flex filtros">-->
+<!--          <q-select outlined label="Estado" dense class="select" bg-color="white"/>-->
+<!--          <q-select outlined label="Cidade" dense class="select cidade" bg-color="white"/>-->
+<!--        </div>-->
       </div>
     <displayAllAnimals class="cards"/>
   </div>
