@@ -5,10 +5,12 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     name: 'home',
+    redirect: {name: 'homePage'},
     children: [
       {
-        path: '',
-        component: () => import('pages/IndexPage.vue')
+        path: '/home',
+        component: () => import('pages/IndexPage.vue'),
+        name: 'homePage'
       },
       {
         path: '/adotar',

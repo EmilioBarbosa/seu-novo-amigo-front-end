@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row flex flex-center q-mt-lg">
-      <img src="src/assets/seu_novo_amigo_sem_fundo.png" style="width: 250px" alt="Logo da plataforma">
+      <img src="../assets/Seu_novo_amigo_sem_fundo.png" style="width: 250px" alt="Logo da plataforma">
     </div>
     <div class="row flex flex-center">
       <h5 class="text-bold q-mt-none">SEU NOVO AMIGO</h5>
@@ -13,8 +13,12 @@
       </div>
     </div>
     <div class="row flex flex-center">
-      <q-icon size="lg" name="fa-brands fa-instagram"></q-icon>
-      <q-icon size="lg" name="fa-brands fa-linkedin"></q-icon>
+      <a href="https://www.instagram.com/emili0gustavo/" target="_blank" class="text-white">
+        <q-icon size="lg" name="fa-brands fa-instagram"/>
+      </a>
+      <a  class="text-white" target="_blank" href="https://www.linkedin.com/in/em%C3%ADlio-gustavo-miranda-barbosa-022b86215">
+        <q-icon size="lg" name="fa-brands fa-linkedin"/>
+      </a>
     </div>
   </div>
 
