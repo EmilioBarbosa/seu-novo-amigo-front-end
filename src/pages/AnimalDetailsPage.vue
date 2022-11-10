@@ -23,15 +23,22 @@
         </div>
       </div>
       <div class="flex flex-center">
-        <q-btn color="white" class="text-black q-mb-md q-mt-lg" size="lg" icon-right="pets" label="adotar" v-if="animalInfo"/>
+        <dialogContato
+          :phone="animalInfo.owner.phones[0]"
+          v-if="animalInfo"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import dialogContato from "components/dialogContato.vue";
 export default {
-  name: "AnimalDetailsPage"
+  name: "AnimalDetailsPage",
+  components: {
+    dialogContato
+  }
 }
 </script>
 
@@ -87,6 +94,7 @@ onMounted(()=>{
 .images{
   grid-area: images;
   min-height: 450px;
+  max-height: 450px;
 }
 .image{
   width: 100%;
