@@ -24,12 +24,31 @@
         />
       </div>
     </div>
+    <div class="row">
+      <div class="col-12 col-md-6 block text-center q-pa-lg">
+        <cardInfoHome
+          :title="'CADASTRE UM ANIMAL PARA ADOÇÃO'"
+          :icon="'favorite'"
+          :text="'Cadastre um animal para adoção e aumente as chances de ele encontrar uma familia !'"
+          :redirect="'animalSignUp'"
+        />
+
+      </div>
+      <div class="col-12 col-md-6 block text-center q-pa-lg">
+        <cardInfoHome
+          :title="'O PROJETO'"
+          :icon="'code'"
+          :text="'Informações sobre o projeto.'"
+          :redirect="'about'"
+        />
+      </div>
+    </div>
   </q-page>
 </template>
 
 <script>
 import {defineComponent} from 'vue'
-import CardInfoHome from "pages/CardInfoHome.vue";
+import CardInfoHome from "components/CardInfoHome.vue";
 
 export default defineComponent({
   name: 'IndexPage',

@@ -36,4 +36,8 @@ function redirect() {
   cursor: pointer;
   box-shadow: 3px 3px 3px 3px #6A4A6D;
 }
+.card-info{
+  max-height: 250px;
+  min-height: 250px;
+}
 </style>

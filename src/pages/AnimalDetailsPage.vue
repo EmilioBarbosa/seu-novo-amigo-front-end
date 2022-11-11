@@ -58,7 +58,7 @@ const animalImage = computed(()=> {
 })
 const sex = computed(()=>{
   if(animalInfo){
-    return animalInfo.sex === 'M' ? 'Macho': 'Fêmea'
+    return animalInfo.value.sex === 'M' ? 'Macho': 'Fêmea'
   }
 })
 const subtitle = computed(()=>{
