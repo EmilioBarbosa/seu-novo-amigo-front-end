@@ -3,11 +3,9 @@
     <q-header elevated>
       <q-toolbar class="toolbar flex justify-between">
         <div>
-
           <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer"/>
           <span class="q-ml-sm text-bold">SEU NOVO AMIGO</span>
         </div>
-
         <q-btn flat round dense icon="fa-solid fa-dog"/>
       </q-toolbar>
     </q-header>
@@ -35,7 +33,7 @@
           </q-item>
         </router-link>
 
-        <router-link :to="{name: 'home'}" v-if="userStore.userLoggedIn">
+        <router-link :to="{name: 'profile'}" v-if="userStore.userLoggedIn">
           <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="account_circle"/>

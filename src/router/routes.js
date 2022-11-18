@@ -13,6 +13,11 @@ const routes = [
         name: 'homePage'
       },
       {
+        path: '/perfil',
+        component: () => import('pages/ProfilePage.vue'),
+        name: 'profile'
+      },
+      {
         path: '/adotar',
         component: () => import('pages/AdoptPage.vue'),
         name: 'adopt'
